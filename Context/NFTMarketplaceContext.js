@@ -129,10 +129,7 @@ export const NFTMarketplaceProvider = ({ children }) => {
 
   const uploadToIPFS = async (file) => {
     try {
-      const ipfs = await create({
-        url: "https://api.thegraph.com/ipfs/api/v0/",
-      });
-      const cid = await ipfs.add(new Blob([file]));
+      const cid = await client.add(new Blob([file]));
       const url = `https://ipfs.io/ipfs/${cid}`;
       return url;
     } catch (error) {
@@ -153,10 +150,8 @@ export const NFTMarketplaceProvider = ({ children }) => {
       // const added = await client.add(data);
 
       // const url = `https://infura-ipfs.io/ipfs/${added.path}`;
-      const ipfs = await create({
-        url: "https://api.thegraph.com/ipfs/api/v0/",
-      });
-      const cid = await ipfs.add(new Blob([data]));
+
+      const cid = await client.add(new Blob([data]));
       const url = `https://ipfs.io/ipfs/${cid}`;
 
       console.log("Before Create Sale");
